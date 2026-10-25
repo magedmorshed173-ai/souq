@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+.bun/
+
+# Next.js build output
+.next/
+out/
+build/
+standalone/
+
+# Environment variables
+.env
+.env*.local
+.env.production
+
+# Logs
+*.log
+dev.log
+server.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Prisma / SQLite
+db/
+prisma/*.db
+prisma/*.db-journal
+
+# Internal working files
+worklog.md
+download/
+tool-results/
+.zscripts/
+
+# Editor
+.vscode/
+.idea/
+*.swp
