@@ -1,0 +1,10 @@
+Noto Naskh Arabic و Noto Kufi Arabic
+------------------------------------
+
+الخطوط المضمّنة في هذا المجلد من مشروع Google Noto، وهي مرخّصة وفق
+SIL Open Font License, Version 1.1.
+
+النص الكامل للرخصة:
+https://openfontlicense.org/open-font-license-official-text/
+
+© Google LLC — https://fonts.google.com/noto
