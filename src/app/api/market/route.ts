@@ -10,6 +10,8 @@ import {
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+// هامش آمن لكل خطط Vercel — الجلب كله متوازٍ بمهلة داخلية 8 ثوانٍ
+export const maxDuration = 30;
 
 /* ------------------------------ الإعدادات ------------------------------ */
 

@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import ZAI from "z-ai-web-dev-sdk";
 import { AGENT_SYSTEM_PROMPT } from "@/lib/agent-prompt";
 
-export const maxDuration = 120;
+// 60 ثانية: الحد الآمن لكل خطط Vercel (Hobby/Pro) — الرد الفعلي يستغرق ~15 ثانية
+export const maxDuration = 60;
 
 interface ChatMessage {
   role: "user" | "assistant";
@@ -94,7 +95,23 @@ export async function POST(req: NextRequest) {
       systemContent += `\n\n${marketSummary}`;
     }
 
-    const zai = await ZAI.create();
+    // تهيئة مزود الذكاء الاصطناعي — قد لا تتوفر خدمته في بعض بيئات الاستضافة السحابية،
+    // ونعود حينها برسالة صادقة بدل خطأ غامض (مبدأ النزاهة في المنصة)
+    let zai;
+    try {
+      zai = await ZAI.create();
+    } catch (initErr) {
+      console.error("[agent-api] فشل تهيئة مزود الذكاء الاصطناعي:", initErr);
+      return NextResponse.json(
+        {
+          error:
+            "خدمة المستشار الذكي غير مهيأة في هذه البيئة (الاستضافة السحابية) حاليًا — بقية أدوات المنصة (الأسعار الحية، الفاحص الشرعي، المحفظة، الزكاة) تعمل كاملة.",
+          degraded: "ai-unavailable",
+        },
+        { status: 503 }
+      );
+    }
+
     const completion = await zai.chat.completions.create({
       messages: [
         { role: "system", content: systemContent },
