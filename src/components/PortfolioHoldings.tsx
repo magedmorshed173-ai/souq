@@ -312,7 +312,11 @@ export default function PortfolioHoldings() {
           />
         </div>
         <div className="space-y-1.5">
-          <Label htmlFor="pfh-div" className="text-xs text-muted-foreground">
+          <Label
+            htmlFor="pfh-div"
+            className="text-xs text-muted-foreground"
+            title="عند تحديث حيازة موجودة وترك هذا الحقل فارغًا، تبقى التوزيعات المحفوظة سابقًا كما هي"
+          >
             توزيعات مُستلمة (اختياري)
           </Label>
           <Input
