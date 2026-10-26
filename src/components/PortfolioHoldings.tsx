@@ -5,6 +5,7 @@ import { STOCKS } from "@/data/stocks";
 import { WATCHLIST_SYMBOLS } from "@/data/symbols";
 import { useMarket } from "@/hooks/use-real-market";
 import { computePurification } from "@/lib/purification";
+import PortfolioCharts from "@/components/PortfolioCharts";
 import { useAppStore } from "@/lib/store";
 import { fmtNum, fmtRiyadhTime, fmtSigned } from "@/lib/format";
 import { cn } from "@/lib/utils";
@@ -500,6 +501,9 @@ export default function PortfolioHoldings() {
           </p>
         </div>
       </div>
+
+      {/* الرسوم البيانية الحية (دونات/أعمدة/دائري) — تُخفى تلقائيًا بدون حيازات مسعّرة */}
+      <PortfolioCharts rows={rows} sarToUsd={sarToUsd} />
 
       {/* أزرار الإجراءات */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-t px-4 py-3">
