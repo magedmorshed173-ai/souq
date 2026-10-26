@@ -5,14 +5,16 @@ import ShariaScreener from "@/components/ShariaScreener";
 import AgentChat from "@/components/AgentChat";
 import ZakatCalculator from "@/components/ZakatCalculator";
 import MarketReports from "@/components/MarketReports";
+import PortfolioHoldings from "@/components/PortfolioHoldings";
 import { useAppStore } from "@/lib/store";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Bot, Eye, HandCoins, LineChart, ShieldCheck, Sparkles } from "lucide-react";
+import { Bot, Eye, HandCoins, LineChart, ShieldCheck, Sparkles, Wallet } from "lucide-react";
 
 const TABS = [
   { value: "watchlist", label: "قائمة المتابعة", icon: Eye },
   { value: "screener", label: "الفاحص الشرعي", icon: ShieldCheck },
   { value: "agent", label: "المستشار الذكي", icon: Bot, highlight: true },
+  { value: "portfolio", label: "محفظتي", icon: Wallet },
   { value: "zakat", label: "حاسبة الزكاة", icon: HandCoins },
   { value: "reports", label: "تقارير السوق", icon: LineChart },
 ] as const;
@@ -51,6 +53,9 @@ export default function MainTabs() {
       </TabsContent>
       <TabsContent value="agent" className="mt-4">
         <AgentChat />
+      </TabsContent>
+      <TabsContent value="portfolio" className="mt-4">
+        <PortfolioHoldings />
       </TabsContent>
       <TabsContent value="zakat" className="mt-4">
         <ZakatCalculator />
