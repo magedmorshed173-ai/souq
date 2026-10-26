@@ -20,6 +20,7 @@ import { Slider } from "@/components/ui/slider";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import PortfolioHoldings from "@/components/PortfolioHoldings";
 import {
   BarChart3,
   Download,
@@ -863,6 +864,7 @@ export default function MarketReports() {
         <SectorPieCard />
         <PerfBarCard />
         <PortfolioBuilderCard />
+        <PortfolioHoldings />
       </section>
 
       {/* ===== التقارير الثابتة للطباعة ===== */}

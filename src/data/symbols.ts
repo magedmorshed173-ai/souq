@@ -204,8 +204,26 @@ export const WATCHLIST_SYMBOLS: SymbolDef[] = [
   },
 ];
 
+/* ------------------------- أسعار الصرف (للتوحيد) ------------------------- */
+
+/** سعر صرف حي يُستخدم لتوحيد إجماليات المحفظة بالدولار — لا يُعرض كبطاقة مؤشر */
+export const FX_SYMBOLS: SymbolDef[] = [
+  {
+    symbol: "SAR=X",
+    nameAr: "دولار ↔ ريال",
+    shortName: "USDSAR",
+    kind: "commodity",
+    currency: "SAR",
+    fetch: true,
+  },
+];
+
 /** كل الرموز المطلوب جلبها في /api/market */
-export const ALL_SYMBOLS: SymbolDef[] = [...INDEX_SYMBOLS, ...WATCHLIST_SYMBOLS];
+export const ALL_SYMBOLS: SymbolDef[] = [
+  ...INDEX_SYMBOLS,
+  ...WATCHLIST_SYMBOLS,
+  ...FX_SYMBOLS,
+];
 
 /** الرموز المطلوب لها التاريخ السنوي (10 سنوات) عند ?history=1 */
 export const HISTORY_SYMBOLS: SymbolDef[] = ALL_SYMBOLS.filter((s) => s.history);

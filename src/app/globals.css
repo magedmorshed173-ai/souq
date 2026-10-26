@@ -212,3 +212,76 @@
   padding: 0.1em 0.35em;
   font-size: 0.82em;
 }
+
+/* ===== تقرير المحفظة للطباعة/PDF ===== */
+#portfolio-print-area {
+  display: none;
+}
+
+@media print {
+  body {
+    background: #ffffff !important;
+  }
+  body * {
+    visibility: hidden !important;
+  }
+  #portfolio-print-area,
+  #portfolio-print-area * {
+    visibility: visible !important;
+  }
+  #portfolio-print-area {
+    display: block !important;
+    position: absolute !important;
+    inset-inline-start: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    padding: 24px 8px !important;
+    color: #1c2b24 !important;
+    font-family: var(--font-tajawal), Tajawal, sans-serif !important;
+  }
+  #portfolio-print-area h1 {
+    font-family: var(--font-amiri), Amiri, serif !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: #0b3d2e !important;
+    margin-bottom: 4px !important;
+  }
+  #portfolio-print-area .print-meta {
+    font-size: 11px !important;
+    color: #5b6b62 !important;
+    margin-bottom: 14px !important;
+  }
+  #portfolio-print-area .print-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    font-size: 11.5px !important;
+  }
+  #portfolio-print-area .print-table th {
+    background: #f0ece0 !important;
+    color: #0b3d2e !important;
+    font-weight: 700 !important;
+    border: 1px solid #d8d2c0 !important;
+    padding: 6px 8px !important;
+    text-align: right !important;
+  }
+  #portfolio-print-area .print-table td {
+    border: 1px solid #d8d2c0 !important;
+    padding: 6px 8px !important;
+    text-align: right !important;
+  }
+  #portfolio-print-area .print-totals {
+    margin-top: 14px !important;
+    font-size: 12.5px !important;
+    line-height: 1.9 !important;
+    background: #faf7f0 !important;
+    border: 1px solid #d8d2c0 !important;
+    border-radius: 8px !important;
+    padding: 10px 14px !important;
+  }
+  #portfolio-print-area .print-notes {
+    margin-top: 12px !important;
+    font-size: 10.5px !important;
+    color: #5b6b62 !important;
+    line-height: 1.8 !important;
+  }
+}
