@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Amiri, Tajawal } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -30,6 +30,22 @@ export const metadata: Metadata = {
     "السوق السعودي",
   ],
   authors: [{ name: "أداة سوق" }],
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: "/icons/icon-192.png",
+    apple: "/icons/apple-touch-icon.png",
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "سوق",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0B3D2E",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

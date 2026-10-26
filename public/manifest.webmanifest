@@ -1,0 +1,34 @@
+{
+  "name": "سوق — تحليل وتداول متوافق مع الشريعة",
+  "short_name": "سوق",
+  "description": "منصة تحليل سوق مباشرة متوافقة مع الشريعة: أسعار حية، فاحص AAOIFI، وكيل ذكي، زكاة وتطهير.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FAF7F0",
+  "theme_color": "#0B3D2E",
+  "categories": ["finance", "business"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
