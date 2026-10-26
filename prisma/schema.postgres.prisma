@@ -1,0 +1,50 @@
+/**
+ * مخطط Prisma للنشر السحابي (Vercel + PostgreSQL مثل Neon).
+ *
+ * يُستخدم تلقائيًا في أمر البناء على Vercel (انظر scripts.build في package.json):
+ *   prisma db push  → إنشاء الجداول عند أول نشر (وكل تحديث لاحق للمخطط)
+ *   prisma generate → توليد عميل Prisma المناسب لـ PostgreSQL
+ *
+ * التطوير المحلي يستمر على SQLite عبر prisma/schema.prisma دون أي تغيير.
+ * الموديلان متطابقان تمامًا في المخططين حتى يبقى الكود واحدًا.
+ */
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/**
+ * عنصر قائمة المتابعة (تثبيت/إلغاء تثبيت سهم)
+ * ملاحظة: التطبيق الحالي أحادي المستخدم (بدون تسجيل دخول) —
+ * عند إضافة الحسابات يُربط كل عنصر بمعرّف مستخدم.
+ */
+model WatchlistItem {
+  id      String   @id @default(cuid())
+  /// رمز Yahoo Finance (مثل 2222.SR أو AAPL)
+  symbol  String   @unique
+  addedAt DateTime @default(now())
+
+  @@index([addedAt])
+}
+
+/**
+ * حيازة فعلية في محفظة المستخدم — أساس حساب الزكاة والتطهير.
+ * shares: عدد الأسهم | avgCost: متوسط التكلفة بعملة السهم
+ * dividends: توزيعات الأرباح المُستلمة التراكمية للحيازة (بعملة السهم)
+ */
+model PortfolioHolding {
+  id        String   @id @default(cuid())
+  symbol    String   @unique
+  shares    Float
+  avgCost   Float
+  dividends Float    @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([updatedAt])
+}
