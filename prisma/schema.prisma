@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,20 +10,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+/**
+ * عنصر قائمة المتابعة (تثبيت/إلغاء تثبيت سهم)
+ * ملاحظة: التطبيق الحالي أحادي المستخدم (بدون تسجيل دخول) —
+ * عند إضافة الحسابات يُربط كل عنصر بمعرّف مستخدم.
+ */
+model WatchlistItem {
+  id      String   @id @default(cuid())
+  /// رمز Yahoo Finance (مثل 2222.SR أو AAPL)
+  symbol  String   @unique
+  addedAt DateTime @default(now())
+
+  @@index([addedAt])
 }
 
-model Post {
+/**
+ * حيازة فعلية في محفظة المستخدم — أساس حساب الزكاة والتطهير.
+ * shares: عدد الأسهم | avgCost: متوسط التكلفة بعملة السهم
+ * dividends: توزيعات الأرباح المُستلمة التراكمية للحيازة (بعملة السهم)
+ */
+model PortfolioHolding {
   id        String   @id @default(cuid())
-  title     String
-  content   String?
-  published Boolean  @default(false)
-  authorId  String
+  symbol    String   @unique
+  shares    Float
+  avgCost   Float
+  dividends Float    @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([updatedAt])
 }
